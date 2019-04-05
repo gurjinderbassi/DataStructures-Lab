@@ -1,8 +1,13 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package bst;
-
 import static java.util.Arrays.sort;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
@@ -14,7 +19,9 @@ import java.util.Stack;
 public class BST {
 
     static Scanner sc = new Scanner(System.in);
+
     static Node root2 = null;
+
     static Node root = null;
 	static class Node{
 		Node lc,rc;
@@ -26,16 +33,19 @@ public class BST {
 		}
         }
 		
+
     public static void main(String[] args) {        
        while(true){
         System.out.println("\n1. Insertion \n2. Deletion \n3. Print tree \n4. Find min \n5. Find max \n6. Ascending order "
                 + "\n7. Descending order \n8. Create balanced BST \n9. kth smallest \n10. kth largest \n11. Exit");
+   
         int choice = sc.nextInt();
         Set<Integer> choice1 = new HashSet<>();
         choice1.add(1);
         choice1.add(2);
         choice1.add(3);
         choice1.add(4);
+
         choice1.add(5);
         choice1.add(6);
         choice1.add(7);
@@ -48,6 +58,7 @@ public class BST {
              System.out.println("Enter element:");
              insertion(root,sc.nextInt());
          }
+
          if(choice==2){ System.out.println("Enter element to delete:");root = deletion(root,sc.nextInt());}
          if(choice==3) printInorder(root);
          if(choice==4) findmin(root); 
@@ -58,12 +69,14 @@ public class BST {
          if(choice==9) findkmin(root);
          if(choice==10) findkmax(root);
          if(choice==11) return;
+         
+
         }
         
         else System.out.println("Wrong choice! Please try again");
         
         }
-    }
+    
     static void findkmin(Node node){
         if(node==null) return;
         System.out.println("Enter k:");
@@ -140,7 +153,10 @@ public class BST {
         }
         System.out.println("Maximum value is "+curr.data);
     }
-     static void insertion(Node root1,int data){
+     
+
+    public static void insertion(Node root1,int data){
+
         
         if(root1==null){
             root = new Node(data);         }
@@ -161,6 +177,13 @@ public class BST {
         
             Stack<Node> s = new Stack();
             Node curr = root1;
+    }
+   public  static void printTree(Node root1){
+       //System.out.print(root.data+" "+root.lc.data+" "+root.rc.data);
+        
+            Stack<Node> s = new Stack();
+            Node curr = root;
+
 			while(curr!=null || !s.isEmpty()){
 				while(curr!=null)
 				{
@@ -176,6 +199,7 @@ public class BST {
         }
     
    
+
     static Node deletion(Node root1, int data){
       
       if(data<root1.data) root1.lc = deletion(root1.lc,data);
@@ -199,4 +223,5 @@ public class BST {
     }
     }
 
+    
 
