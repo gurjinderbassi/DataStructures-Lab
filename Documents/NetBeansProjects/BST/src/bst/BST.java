@@ -76,6 +76,7 @@ public class BST {
         else System.out.println("Wrong choice! Please try again");
         
         }
+    }
     
     static void findkmin(Node node){
         if(node==null) return;
