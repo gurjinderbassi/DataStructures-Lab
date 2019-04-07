@@ -23,11 +23,11 @@ public class StringMatching {
         text = sc.nextLine();
         System.out.println("Enter pattern to search:");
         pat = sc.nextLine();
-        System.out.println("Choose algorithm:\n1. Naive 2. KMP 3. Rabin Karps 4. Finite automata");
+        System.out.println("Choose algorithm:\n1. Naive 2. KMP 3. Rabin Karp 4. Finite automata");
         int choice = sc.nextInt();
         if(choice == 1) naive(text,pat);
         else if (choice==2) kmp(text,pat);
-        else if(choice ==3) rabinkarps(text,pat);
+        else if(choice ==3) rabinkarp(text,pat);
         else if(choice == 4) finiteautomata(text,pat);
         else {
             System.out.println("Wrong choice!");
@@ -96,8 +96,46 @@ public class StringMatching {
         }
         
     }
-    static void rabinkarps(String txt,String pat){
-        
+    static void rabinkarp(String txt,String pat){
+        int M = pat.length(); 
+        int N = txt.length(); 
+        int i, j; 
+        int p = 0;  
+        int t = 0; 
+        int h = 1; 
+        int d = 256, q=101;
+      
+        for (i = 0; i < M-1; i++) 
+            h = (h*d)%q; 
+      
+        for (i=0; i< M; i++) 
+        { 
+            p = (d*p + pat.charAt(i))%q; 
+            t = (d*t + txt.charAt(i))%q; 
+        } 
+     
+        for (i = 0; i <= N - M; i++) 
+        { 
+   
+            if ( p == t ) 
+            { 
+               
+                for (j = 0; j < M; j++) 
+                { 
+                    if (txt.charAt(i+j) != pat.charAt(j)) 
+                        break; 
+                } 
+                if (j == M) 
+                    System.out.println("Pattern found at index " + i); 
+            } 
+      
+            if ( i < N-M ) 
+            { 
+                t = (d*(t - txt.charAt(i)*h) + txt.charAt(i+M))%q; 
+                if (t < 0) 
+                t = (t + q); 
+            } 
+        } 
     }
     static void finiteautomata(String txt,String pat){
         
